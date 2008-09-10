@@ -1,5 +1,5 @@
 require 'echoe'
-Echoe.new('itmat') do |p|
+Echoe.new('ipt') do |p|
   p.author = "Angel Pizarro"
   p.summary = "Proteomics utilities"
   p.email = "angel@mail.med.upenn.edu"
