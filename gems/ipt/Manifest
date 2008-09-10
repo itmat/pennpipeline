@@ -4,6 +4,7 @@ bin/mgf2dta
 bin/run_deconmsn.rb
 bin/run_mscluster.rb
 CHANGELOG
+ipt.gemspec
 lib/ipt/parsers/mgf.rb
 lib/ipt/parsers/mzml.rb
 lib/ipt/parsers/pepxml.rb
