@@ -1,4 +1,4 @@
-module ITMAT 
+module IPT 
   module Parsers
   end
 end

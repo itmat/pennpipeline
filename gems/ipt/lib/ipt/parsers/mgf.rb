@@ -1,4 +1,4 @@
-module ITMAT
+module IPT
   module Parsers
     class MGF < File
       attr_reader :name, :index, :basename

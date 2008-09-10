@@ -1,4 +1,4 @@
-module Itmat #:nodoc:
+module IPT #:nodoc:
   module VERSION #:nodoc:
     MAJOR = 0
     MINOR = 0

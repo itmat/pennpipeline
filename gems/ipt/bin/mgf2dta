@@ -9,15 +9,15 @@
 # 
 # ruby mgf2dta.rb path/to/mgf/files
 
-require 'itmat/parsers/mgf'
+require 'ipt/parsers/mgf'
 
+#:nodoc:all
 module MGF2DTA
   def self.process(fname)
     unless fname
       raise("\nERR: No MGF file input given." + self.usage())
     end
-      
-    mgf = MGF.new(fname)
+    mgf = IPT::Parsers::MGF.new(fname)
     basename = mgf.basename
     Dir.mkdir(basename) unless File.directory?(basename)
     mgf.each_scan do |s|    
