@@ -1,0 +1,8 @@
+require 'echoe'
+Echoe.new('itmat') do |p|
+  p.author = "Angel Pizarro"
+  p.summary = "Proteomics utilities"
+  p.email = "angel@mail.med.upenn.edu"
+  p.version = "0.0.1"
+  p.dependencies = ['hpricot =0.6']
+end

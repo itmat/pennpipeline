@@ -1,0 +1,17 @@
+bin/fix_deconmsn.rb
+bin/map_cluster.rb
+bin/mgf2dta.rb
+bin/run_deconmsn.rb
+bin/run_mscluster.rb
+CHANGELOG
+lib/itmat/parsers/mgf.rb
+lib/itmat/parsers/mzml.rb
+lib/itmat/parsers/pepxml.rb
+lib/itmat/parsers/protxml.rb
+lib/itmat/parsers.rb
+lib/itmat/version.rb
+lib/itmat.rb
+LICENSE
+Manifest
+Rakefile
+README.rdoc

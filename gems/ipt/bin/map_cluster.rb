@@ -15,7 +15,10 @@
 #
 
 require 'optparse'
+# require 'rubygems'
+require '../lib/itmat/parser/mgf'
 
+include ITMAT::Parser::MGFUtils
 usage = 'ruby merge_map.rb -i <original unclustered mgf> -m <cluster mapping file> '
 debug = false
 mgf_fname = nil
@@ -49,7 +52,7 @@ outxml = File.open(File.basename(mgf_fname), "w+")
 outxml.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n")
 
 #open mgf file and initialize mgf lib
-mgf = ITMAT::MGF.new(mgf_fname)
+mgf = MGF.new(mgf_fname)
 
 outxml.write("<mgf filename=\"#{mgf.fname}\"\n\n")
 

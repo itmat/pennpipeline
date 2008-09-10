@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby 
+
+# MGF2DTA
+# Creates DTA files from an MGF file into a sub-directory that
+# corresponds to the MGF file name. For instance "my_files/fraction1.mgf"
+# would create DTA files in "my_files/fraction1/."
+#
+# USAGE
+# 
+# ruby mgf2dta.rb path/to/mgf/files
+
+require 'itmat/parsers/mgf'
+
+module MGF2DTA
+  def self.process(fname)
+    unless fname
+      raise("\nERR: No MGF file input given." + self.usage())
+    end
+      
+    mgf = MGF.new(fname)
+    basename = mgf.basename
+    Dir.mkdir(basename) unless File.directory?(basename)
+    mgf.each_scan do |s|    
+      self.write_dta(basename,s)
+    end
+    `tar czf #{basename}.tgz #{basename}` 
+  end
+  def self.write_dta(basename,scan)
+    o = File.open("#{basename}/#{scan.title}.dta",'w')
+
+    pmass =  ((scan.pepmass - 1.00782) * scan.charge) + 1.00782
+    o.puts("#{pmass} #{scan.charge}")
+    scan.mz.each_index do |i|
+      o.puts("#{scan.mz[i]} #{scan.intensity[i]}")
+    end
+    o.close()
+  end
+  
+  def self.usage
+    "\nUSAGE: mgf2dta.rb < MGF_file | dir/path > "
+  end
+end
+
+if $0  == __FILE__ 
+  if ARGV[0] && File.directory?(ARGV[0]) && ARGV[0] != "."
+    Dir.chrdir ARGV[0]
+  end
+  files = []
+  if ARGV[0] && ARGV[0] =~ /(.+)\.mgf/i
+    files << ARGV[0]
+  else
+    files = Dir.glob("*.mgf")
+  end
+  if file.length == 0 
+    STDERR.puts "No MGF file in #{ARGV[0]}."
+    exit(1)
+  end
+  files.each do |f|
+    MGF2DTA.process(f)
+  end
+end
