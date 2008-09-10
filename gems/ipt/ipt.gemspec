@@ -68,6 +68,7 @@ files:
 - bin/run_deconmsn.rb
 - bin/run_mscluster.rb
 - CHANGELOG
+- ipt.gemspec
 - lib/ipt/parsers/mgf.rb
 - lib/ipt/parsers/mzml.rb
 - lib/ipt/parsers/pepxml.rb
@@ -79,7 +80,6 @@ files:
 - Manifest
 - Rakefile
 - README.rdoc
-- ipt.gemspec
 has_rdoc: true
 homepage: ""
 post_install_message: 

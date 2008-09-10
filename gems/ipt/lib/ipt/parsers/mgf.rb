@@ -7,7 +7,7 @@ module IPT
         @name = fname
         @basename = File.basename(fname, ".mgf")
         @index = {}
-        self.parse_index()
+        parse_index()
         @scan_count = @index.size()
       end
 
@@ -81,7 +81,7 @@ module IPT
             when /^\d+/
               mz, int =  l.split(/\s/)
               @mz.push( mz.to_f)
-              @int.push(int.to_f)
+              @intensity.push(int.to_f)
             end
           end
         end
