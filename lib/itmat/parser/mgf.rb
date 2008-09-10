@@ -2,10 +2,12 @@ module ITMAT
   module Parser
     module MGFUtils
       class Mgf < File
+        attr :scan_count, :fname
         def initialize(fname) 
           super(fname)
           @fname = fname
           @basename = File.basename(fname, ".mgf")
+          @scan_count = 0
           self.index()
         end
         def index
@@ -26,6 +28,7 @@ module ITMAT
             end
             tmppos = self.pos
           end
+          @scan_count = @index.size
         end
         
         def get_scan(num)
