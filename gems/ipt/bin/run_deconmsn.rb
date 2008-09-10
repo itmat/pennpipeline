@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby 
+#:nodoc:all
+
 ##########################################################
 ##
 #   David Austin @ UPENN
@@ -11,6 +14,8 @@
 #
 ######################################################
 require 'optparse'
+require 'ipt/parsers/mgf'
+
 
 @@switches = [ '-F', '-L', '-B','-T','-I'] #modified for decon msn
 

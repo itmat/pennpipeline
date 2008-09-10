@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby 
+#:nodoc:all
+
 ##############################   
 ################
 #
@@ -8,6 +11,12 @@
 #  usage: ruby fix_deconmsn.rb <filename>
 
 #first open file
+
+
+require 'optparse'
+require 'ipt/parsers/mgf'
+include IPT::Parsers
+
 
 exit 1 if ARGV[0].nil?
 

@@ -3,6 +3,6 @@ Echoe.new('ipt') do |p|
   p.author = "Angel Pizarro"
   p.summary = "Proteomics utilities"
   p.email = "angel@mail.med.upenn.edu"
-  p.version = "0.0.1"
+  # p.version = "0.0.1" # see chengelog
   p.dependencies = ['hpricot =0.6']
 end

@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby 
+#:nodoc:all
+
 ############################################################################################
 #######
 ####
@@ -15,10 +18,9 @@
 #
 
 require 'optparse'
-# require 'rubygems'
-require '../lib/itmat/parser/mgf'
+require 'ipt/parsers/mgf'
+include IPT::Parsers
 
-include ITMAT::Parser::MGFUtils
 usage = 'ruby merge_map.rb -i <original unclustered mgf> -m <cluster mapping file> '
 debug = false
 mgf_fname = nil
