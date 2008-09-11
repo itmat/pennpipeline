@@ -8,7 +8,6 @@ module IPT
         @basename = File.basename(fname, ".mgf")
         @index = {}
         parse_index()
-        @scan_count = @index.size()
       end
 
       def scan_count 
@@ -16,8 +15,14 @@ module IPT
       end
       
       def scan(num)
-        self.pos = @index[num][:pos]
-        Scan.new(self.read( @index[num + 1][:pos] - @index[num][:pos]))
+        num = num.to_i
+	self.pos = @index[num.to_s][:pos].to_i
+	if (num>=self.scan_count-1)
+	  #read to the end
+          return Scan.new(self.read())
+        else
+          return Scan.new(self.read( @index[(num + 1).to_s][:pos].to_i - @index[num.to_s][:pos].to_i))
+	end
       end
 
       # Assumes that you are at the begining of a scan! E.g. position before "BEGIN IONS" 
@@ -29,7 +34,7 @@ module IPT
           break if l =~  /END IONS/
           buff << l
         end
-        MGF::Scan.new(buff)
+        return Scan.new(buff)
       end
       
       def each_scan 
@@ -45,15 +50,15 @@ module IPT
         self.pos = 0
         tmppos = self.pos 
         pos = nil
-        t = nil
         scan_num = 0
         self.each do |l|
           case l
-          when "BEGIN IONS"
+          when /^BEGIN IONS/
             pos = tmppos
           when /^TITLE=(.+)$/
-            @index[scan_num] = {:pos => pos, :title => $1}
+            @index[scan_num.to_s] = {:pos => pos,:title => $1}
             @scan_pos.push(pos)
+            scan_num+=1
           end
           tmppos = self.pos
         end
@@ -63,8 +68,9 @@ module IPT
       # MGF::Scan 
       # represents an individual scan within the MGF file
       class Scan
-        attr_reader :title, :charge, :mz, :intensity, :pepmass
+        attr_reader :title, :charge, :mz, :intensity, :pepmass, :input
         def initialize(str)
+          @input = str #debug purposes
           @title  = nil
           @charge  = nil
           @pepmass  = nil
@@ -73,7 +79,7 @@ module IPT
           str.split("\n").each do |l|
             case l
             when /^TITLE=(.+)/
-              @title = $1
+              @title = $1.chomp!
             when /^CHARGE=(\d+)/
               @charge = $1.to_i
             when /^PEPMASS=([0-9.]+)/

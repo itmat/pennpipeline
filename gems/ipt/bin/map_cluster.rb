@@ -47,7 +47,9 @@ if (mgf_fname.nil? || map_fname.nil?)
   exit 1
 end
 
-outxml = File.open(File.basename(mgf_fname), "w+")
+outfname = File.basename(map_fname).chomp.chomp('.clust.txt') + '_map.xml'
+
+outxml = File.open(outfname, "w+")
 
 #print xml headers
 
@@ -56,7 +58,7 @@ outxml.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n")
 #open mgf file and initialize mgf lib
 mgf = MGF.new(mgf_fname)
 
-outxml.write("<mgf filename=\"#{mgf.fname}\"\n\n")
+outxml.write("<mgf filename=\"#{mgf.name}\">\n\n")
 
 #open mapping file 
 
@@ -76,24 +78,25 @@ map.each do |l|
     incluster = true
     #now print cluster tag
     outxml.write("<cluster name=\"#{$1}\" count=\"#{$2}\" mass=\"#{$3}\">\n")
-    
-  when /^0\s+(\d+)\s+\d+\.\d+\s\d\s*$/
-    scan = mgf.get_scan($1)
+
+
+  when /^[0]\s+(\d+)\s+\d+\.\d+\s\d\s*$/
+    scan = mgf.scan($1)
     unless scan.nil?
       #now we print the dta
       outxml.write("<scan title=\"#{scan.title}\" charge=\"#{scan.charge}\" pepmass=\"#{scan.pepmass}\">\n")
       #now loop through the arrays to construct the mz
       mza = scan.mz
-      inta = scan.int
+      inta = scan.intensity
       
       0.upto(mza.size-1) do |i|
         outxml.write("<mz intensity=\"#{inta[i]}\">#{mza[i]}</mz>\n")       
       end     
       
       outxml.write("</scan>\n")
-      
+
     end
-    
+   
   end
   
 end
@@ -102,4 +105,5 @@ end
 #print xml footers
 outxml.write("</cluster>\n\n") if incluster
 outxml.write("</mgf>\n\n")
-
+outxml.flush
+outxml.close

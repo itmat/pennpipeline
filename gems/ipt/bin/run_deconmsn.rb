@@ -105,7 +105,7 @@ Dir.glob("*.{raw,RAW}").each do |r|
     #cleanup
     puts "rm #{dirname}/#{r}" if debug
     system ("rm #{dirname}/#{r}")
-
+    system "cp #{dirname}/#{dirname}.mgf ." if mgf 
 end 
 
 

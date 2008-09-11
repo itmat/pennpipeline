@@ -42,7 +42,8 @@ Dir.chdir(cwd) unless cwd.nil?
 
 # first copy over the models, mkdir tmp out
 
-system "cp -r #{@@modelsdir} ."
+puts "Prepping dir for mscluster...\n"
+system "cp -r #{modeldir} ."
 system "mkdir out"
 system "mkdir tmp"
 
@@ -50,13 +51,11 @@ system "mkdir tmp"
 #for each mgf
 
 Dir.glob("*.{mgf}").each do |f|
-  
+  puts "Processing #{f}...\n"  
+
   # parse f so that we can get the filename
-  
+  f.chomp!
   fdir = f.chomp(".mgf")
-  
-  system "mkdir #{fdir}"
-  system "rm #{fdir}/*"
   
   #clean the out and tmp files
   
@@ -77,29 +76,26 @@ Dir.glob("*.{mgf}").each do |f|
   #cluster the mgf file
   
   puts "Running MSCLuster for #{f}...\n"
-  system "#{clustercmd} #{clusteroptions} -name=#{f} > #{fdir}_cluster_out.txt"
+  puts "#{clustercmd} #{clusteroptions} -name #{fdir} > #{fdir}_cluster_out.txt"
+  system "#{clustercmd} #{clusteroptions} -name #{fdir} > #{fdir}_cluster_out.txt"
   
   #move the file to the dir
   
   puts "Post processing: Mapping, moving and cleaning up for #{fdir}..."
   
-  system "cp -v ./out/#{fdir}_0_1.mgf ./#{fdir}"
+  system "cp -v ./out/#{fdir}_0_1.mgf ."
   
   
   # create mapping xml file, split into dtas
   
-  Dir.chdir("#{fdir}") do 
+  #make map
     
-    #make map
+    system "ruby -S map_cluster.rb -i #{f} -m out/#{fdir}_0_1.clust.txt"
     
-    system "ruby -S map_cluster.rb -i ../#{f} -m ../out/#{fdir}_clust.txt"
+  #split into dtas
     
-    #split into dtas
+    system "mgf2dta #{fdir}_0_1.mgf"
     
-    system "ruby -S mgf2dta.rb #{fdir}_0_1.mgf"
-    
-  end
-  
   
   # recreate the mzxml file from the new mgf file TODO
   
