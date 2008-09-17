@@ -65,8 +65,10 @@ Dir.glob("*.{mgf}").each do |f|
   
   puts "Fixing Decon output for #{f}..\n"
   
-  system "ruby -S fix_deconmsn.rb #{f}"
-  
+  system "ruby -S post_deconmsn.rb #{f}"
+  system "unix2dos.exe #{f}"  
+
+
   # write inputs for mgf
   
   mgfout = File.open('mgfinputs.txt', "w+")
@@ -92,9 +94,14 @@ Dir.glob("*.{mgf}").each do |f|
     
     system "ruby -S map_cluster.rb -i #{f} -m out/#{fdir}_0_1.clust.txt"
     
+  #post processing
+
+   system "ruby -S post_mscluster.rb #{fdir}_0_1.mgf"
+
+
   #split into dtas
     
-    system "mgf2dta #{fdir}_0_1.mgf"
+   system "mgf2dta #{fdir}_0_1.mgf"
     
   
   # recreate the mzxml file from the new mgf file TODO
@@ -103,5 +110,3 @@ Dir.glob("*.{mgf}").each do |f|
   system "rm tmp/* out/*"
   
 end 
-
-
