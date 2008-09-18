@@ -12,7 +12,7 @@ authors:
 autorequire: 
 bindir: bin
 
-date: 2008-09-10 00:00:00 -04:00
+date: 2008-09-18 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -41,6 +41,8 @@ executables:
 - fix_deconmsn.rb
 - map_cluster.rb
 - mgf2dta
+- post_deconmsn.rb
+- post_mscluster.rb
 - run_deconmsn.rb
 - run_mscluster.rb
 extensions: []
@@ -49,6 +51,8 @@ extra_rdoc_files:
 - bin/fix_deconmsn.rb
 - bin/map_cluster.rb
 - bin/mgf2dta
+- bin/post_deconmsn.rb
+- bin/post_mscluster.rb
 - bin/run_deconmsn.rb
 - bin/run_mscluster.rb
 - CHANGELOG
@@ -65,6 +69,8 @@ files:
 - bin/fix_deconmsn.rb
 - bin/map_cluster.rb
 - bin/mgf2dta
+- bin/post_deconmsn.rb
+- bin/post_mscluster.rb
 - bin/run_deconmsn.rb
 - bin/run_mscluster.rb
 - CHANGELOG
