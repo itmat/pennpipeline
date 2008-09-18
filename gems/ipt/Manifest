@@ -1,3 +1,6 @@
+bin/post_deconmsn.rb
+bin/post_mscluster.rb
+bin/run_mzxml2search.rb
 bin/fix_deconmsn.rb
 bin/map_cluster.rb
 bin/mgf2dta

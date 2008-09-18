@@ -27,7 +27,7 @@ module MGF2DTA
   end
   def self.write_dta(basename,scan)
     o = File.open(File.join(basename, "#{scan.title}.dta"),'w')
-    pmass =  ((scan.pepmass - 1.00782) * scan.charge) + 1.00782
+    pmass =  ((scan.pepmass.to_f - 1.00782) * scan.charge.to_f) + 1.00782
     o.puts("#{pmass} #{scan.charge}")
     scan.mz.each_index do |i|
       o.puts("#{scan.mz[i]} #{scan.intensity[i]}")
