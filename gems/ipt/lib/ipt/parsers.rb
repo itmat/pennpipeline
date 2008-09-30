@@ -2,7 +2,8 @@ module IPT
   module Parsers
   end
 end
-require 'parsers/mgf'
-require 'parsers/mzxml'
-require 'parsers/pepxml'
-require 'parsers/protxml'
+
+require 'ipt/parsers/mgf'
+require 'ipt/parsers/mzml'
+require 'ipt/parsers/pepxml'
+require 'ipt/parsers/protxml'

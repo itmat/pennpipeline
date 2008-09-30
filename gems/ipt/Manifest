@@ -1,6 +1,3 @@
-bin/post_deconmsn.rb
-bin/post_mscluster.rb
-bin/run_mzxml2search.rb
 bin/fix_deconmsn.rb
 bin/map_cluster.rb
 bin/mgf2dta
@@ -9,13 +6,11 @@ bin/post_mscluster.rb
 bin/run_deconmsn.rb
 bin/run_mscluster.rb
 CHANGELOG
-ipt.gemspec
 lib/ipt/parsers/mgf.rb
 lib/ipt/parsers/mzml.rb
 lib/ipt/parsers/pepxml.rb
 lib/ipt/parsers/protxml.rb
 lib/ipt/parsers.rb
-lib/ipt/version.rb
 lib/ipt.rb
 LICENSE
 Manifest
