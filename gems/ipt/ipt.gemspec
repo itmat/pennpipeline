@@ -12,7 +12,7 @@ authors:
 autorequire: 
 bindir: bin
 
-date: 2008-09-18 00:00:00 -04:00
+date: 2008-10-14 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -57,7 +57,7 @@ extra_rdoc_files:
 - bin/run_mscluster.rb
 - CHANGELOG
 - lib/ipt/parsers/mgf.rb
-- lib/ipt/parsers/mzml.rb
+- lib/ipt/parsers/mzxml.rb
 - lib/ipt/parsers/pepxml.rb
 - lib/ipt/parsers/protxml.rb
 - lib/ipt/parsers.rb
@@ -73,8 +73,9 @@ files:
 - bin/run_deconmsn.rb
 - bin/run_mscluster.rb
 - CHANGELOG
+- ipt.gemspec
 - lib/ipt/parsers/mgf.rb
-- lib/ipt/parsers/mzml.rb
+- lib/ipt/parsers/mzxml.rb
 - lib/ipt/parsers/pepxml.rb
 - lib/ipt/parsers/protxml.rb
 - lib/ipt/parsers.rb
@@ -83,7 +84,6 @@ files:
 - Manifest
 - Rakefile
 - README.rdoc
-- ipt.gemspec
 has_rdoc: true
 homepage: ""
 post_install_message: 
