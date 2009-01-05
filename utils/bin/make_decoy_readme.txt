@@ -1,17 +1,18 @@
-i couldn't install the new tpp on mustard cause there were dependancy issues.  so instead i used this work around...
+USAGE
+----------
+%>   perl make_decoy.pl db_filename > new_db_filename
 
-for an IPI database, i ran this sed script:
+
+For an IPI database, preprocess with:
 
 sed -i 's/^>\(IPI:\)\([^| .]*\)\(.*\)$/>\2 \1\2\3/' databaseFile 
 
-then i used the normal make_decoy.pl script to reverse the modified IPI database.  
+before processing with make_decoy.pl
 
-also in mascot, i had to change the accession string and description parse rules as follows:
+For SEQUEST, upload the resulting database to S:\sequest\database and copy to nodes using the Bioworks cluster manager tool.
 
-Rule to parse accession string: ">\(IPI[^| .]*\)" 
-Rule to parse description string: ">IPI[0-9]{8} [^ ]* \(.*\)" 
 
-and if i put the reversed database into mascot:
+For MASCOT, upload the database to the server as usual an configure with the following regular expresssions:
 
 Rule to parse accession string: ">\([REV_]*IPI[^| .]*\)" 
 Rule to parse description string: ">[REV_]*IPI[0-9]{8} [^ ]* \(.*\)" 
