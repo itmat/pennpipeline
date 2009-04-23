@@ -3,6 +3,6 @@ Echoe.new('ipt') do |p|
   p.author = "Angel Pizarro"
   p.summary = "Proteomics utilities"
   p.email = "angel@mail.med.upenn.edu"
-  p.version = "0.0.2" # CHANGELOG parsing not working
+  p.version = "0.0.3" # CHANGELOG parsing not working
   p.dependencies = ['hpricot =0.6']
 end

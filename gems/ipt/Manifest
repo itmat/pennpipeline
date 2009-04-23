@@ -4,6 +4,7 @@ bin/mgf2dta
 bin/post_deconmsn.rb
 bin/post_mscluster.rb
 bin/run_deconmsn.rb
+bin/run_extractmsn.rb
 bin/run_mscluster.rb
 CHANGELOG
 ipt.gemspec
